@@ -50,8 +50,7 @@ function addTask() {
     };
     
     tasks.push(newTask);
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-    
+    saveTasks();    
     input.value = '';
     
     renderTasks();
@@ -120,8 +119,7 @@ function toggleTask(id) {
         }
     }
     
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-    
+    saveTasks();    
     renderTasks();
     updateStats();
 }
@@ -134,8 +132,7 @@ function deleteTask(id) {
         }
     }
     tasks = newTasks;
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-    
+    saveTasks();    
     renderTasks();
     updateStats();
 }
@@ -174,4 +171,8 @@ function updateStats() {
     
     let statsDiv = document.getElementById('stats');
     statsDiv.innerHTML = 'Total: ' + total + ' | Completadas: ' + completed + ' | Activas: ' + active;
+}
+
+function saveTasks(){
+    localStorage.setItem('tasks', JSON.stringify(tasks));
 }
