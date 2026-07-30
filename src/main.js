@@ -108,20 +108,7 @@ function deleteTask(id) {
 
 function filterTasks(filter) {
     currentFilter = filter;
-    
-    let buttons = document.querySelectorAll('.filter-btn');
-    for (let i = 0; i < buttons.length; i++) {
-        buttons[i].classList.remove('active');
-    }
-    
-    if (filter == 'all') {
-        buttons[0].classList.add('active');
-    } else if (filter == 'active') {
-        buttons[1].classList.add('active');
-    } else {
-        buttons[2].classList.add('active');
-    }
-    
+    actualizarBotonesActivos(filter);
     updateView();
 }
 
@@ -185,4 +172,19 @@ function crearElementoTarea(tarea) {
     };
     
     return taskDiv;
+}
+
+function actualizarBotonesActivos(filtro)  {
+    let buttons = document.querySelectorAll('.filter-btn');
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove('active');
+    }   
+
+    if (filtro == 'all') {
+        buttons[0].classList.add('active');
+    } else if (filtro == 'active') {
+        buttons[1].classList.add('active');
+    } else if (filtro == 'completed') {
+        buttons[2].classList.add('active');
+    }
 }
