@@ -112,14 +112,12 @@ function renderTasks() {
 }
 
 function toggleTask(id) {
-    for (let i = 0; i < tasks.length; i++) {
-        if (tasks[i].id == id) {
-            tasks[i].completed = !tasks[i].completed;
-            break;
-        }
-    }
+    let tarea = obtenerTareaPorId(id);
     
-    saveTasks();    
+    if (tarea) {
+        tarea.completed = !tarea.completed;
+    }
+    saveTasks();
     updateView();
 }
 
@@ -179,3 +177,12 @@ function updateView() {
     renderTasks();
     updateStats();
 }
+
+function obtenerTareaPorId(id) {
+    for (let i = 0; i < tasks.length; i++) {
+        if (tasks[i].id == id) {
+            return tasks[i];
+        }
+    }
+    return null;
+}  
