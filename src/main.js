@@ -34,9 +34,9 @@ window.onload = function() {
 
 function addTask() {
     let input = document.getElementById('taskInput');
-    let text = input.value;
+    let textoNuevaTarea = input.value;
     
-    if (text == '') {
+    if (textoNuevaTarea == '') {
         alert('Por favor escribe una tarea');
         return;
     }
@@ -44,7 +44,7 @@ function addTask() {
 
     let newTask = {
         id: taskId++,
-        text: text,
+        text: textoNuevaTarea,
         completed: false,
         createdAt: new Date().toISOString()
     };
