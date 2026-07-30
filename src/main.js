@@ -120,8 +120,7 @@ function toggleTask(id) {
     }
     
     saveTasks();    
-    renderTasks();
-    updateStats();
+    updateView();
 }
 
 function deleteTask(id) {
@@ -133,8 +132,7 @@ function deleteTask(id) {
     }
     tasks = newTasks;
     saveTasks();    
-    renderTasks();
-    updateStats();
+    updateView();
 }
 
 function filterTasks(filter) {
@@ -153,7 +151,7 @@ function filterTasks(filter) {
         buttons[2].classList.add('active');
     }
     
-    renderTasks();
+    updateView();
 }
 
 function updateStats() {
@@ -175,4 +173,9 @@ function updateStats() {
 
 function saveTasks(){
     localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+function updateView() {
+    renderTasks();
+    updateStats();
 }
