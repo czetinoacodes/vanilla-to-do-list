@@ -75,34 +75,7 @@ function renderTasks() {
     
 
     for (let i = 0; i < filteredTasks.length; i++) {
-        let task = filteredTasks[i];
-        let taskDiv = document.createElement('div');
-        taskDiv.className = 'task-item';
-        
-        if (task.completed) {
-            taskDiv.className = 'task-item completed';
-        }
-        
-        taskDiv.innerHTML = 
-            `<span>${task.text}</span>
-            <div class="task-buttons">
-              <button class="complete-btn" data-id="${task.id}">
-                ${task.completed ? "Reactivar" : "Completar"}
-              </button>
-              <button class="delete-btn" data-id="${task.id}">Eliminar</button>
-            </div>`;
-
-        let completeBtn = taskDiv.querySelector('.complete-btn');
-        let deleteBtn = taskDiv.querySelector('.delete-btn');
-        
-        completeBtn.onclick = function() {
-            toggleTask(parseInt(this.getAttribute('data-id')));
-        };
-        
-        deleteBtn.onclick = function() {
-            deleteTask(parseInt(this.getAttribute('data-id')));
-        };
-        
+        let taskDiv = crearElementoTarea(filteredTasks[i]);
         taskList.appendChild(taskDiv);
     }
     
@@ -186,3 +159,30 @@ function obtenerTareaPorId(id) {
     }
     return null;
 }  
+
+function crearElementoTarea(tarea) {
+    let taskDiv = document.createElement('div');
+    taskDiv.className = tarea.completed ? 'task-item completed' : 'task-item';
+    
+    taskDiv.innerHTML = 
+        `<span>${tarea.text}</span>
+        <div class="task-buttons">
+          <button class="complete-btn" data-id="${tarea.id}">
+            ${tarea.completed ? "Reactivar" : "Completar"}
+          </button>
+          <button class="delete-btn" data-id="${tarea.id}">Eliminar</button>
+        </div>`;
+    
+    let completeBtn = taskDiv.querySelector('.complete-btn');
+    let deleteBtn = taskDiv.querySelector('.delete-btn');
+    
+    completeBtn.onclick = function() {
+        toggleTask(parseInt(this.getAttribute('data-id')));
+    };
+    
+    deleteBtn.onclick = function() {
+        deleteTask(parseInt(this.getAttribute('data-id')));
+    };
+    
+    return taskDiv;
+}
